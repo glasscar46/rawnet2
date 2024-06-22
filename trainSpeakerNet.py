@@ -27,7 +27,7 @@ parser.add_argument('--config',         type=str,   default=None,   help='Config
 ## Data loader
 parser.add_argument('--max_frames',     type=int,   default=200,    help='Input length to the network for training')
 parser.add_argument('--eval_frames',    type=int,   default=300,    help='Input length to the network for testing 0 uses the whole files')
-parser.add_argument('--batch_size',     type=int,   default=200,    help='Batch size, number of speakers per batch')
+parser.add_argument('--batch_size',     type=int,   default=64,    help='Batch size, number of speakers per batch')
 parser.add_argument('--max_seg_per_spk', type=int,  default=500,    help='Maximum number of utterances per speaker per epoch')
 parser.add_argument('--nDataLoaderThread', type=int, default=5,     help='Number of loader threads')
 parser.add_argument('--augment',        type=bool,  default=False,  help='Augment input')
@@ -35,7 +35,7 @@ parser.add_argument('--seed',           type=int,   default=10,     help='Seed f
 
 ## Training details
 parser.add_argument('--test_interval',  type=int,   default=10,     help='Test and save every [test_interval] epochs')
-parser.add_argument('--max_epoch',      type=int,   default=500,    help='Maximum number of epochs')
+parser.add_argument('--max_epoch',      type=int,   default=100,    help='Maximum number of epochs')
 parser.add_argument('--trainfunc',      type=str,   default="",     help='Loss function')
 
 ## Optimizer
@@ -43,7 +43,7 @@ parser.add_argument('--optimizer',      type=str,   default="adam", help='sgd or
 parser.add_argument('--scheduler',      type=str,   default="steplr", help='Learning rate scheduler')
 parser.add_argument('--lr',             type=float, default=0.001,  help='Learning rate')
 parser.add_argument("--lr_decay",       type=float, default=0.95,   help='Learning rate decay every [test_interval] epochs')
-parser.add_argument('--weight_decay',   type=float, default=0,      help='Weight decay in the optimizer')
+parser.add_argument('--weight_decay',   type=float, default=0.0001,      help='Weight decay in the optimizer')
 
 ## Loss functions
 parser.add_argument("--hard_prob",      type=float, default=0.5,    help='Hard negative mining probability, otherwise random, only for some loss functions')
@@ -73,9 +73,9 @@ parser.add_argument('--rir_path',       type=str,   default="data/RIRS_NOISES/si
 ## Model definition
 parser.add_argument('--n_mels',         type=int,   default=40,     help='Number of mel filterbanks')
 parser.add_argument('--log_input',      type=bool,  default=False,  help='Log input features')
-parser.add_argument('--model',          type=str,   default="",     help='Name of model definition')
+parser.add_argument('--model',          type=str,   default="RawNet2",     help='Name of model definition')
 parser.add_argument('--encoder_type',   type=str,   default="SAP",  help='Type of encoder')
-parser.add_argument('--nOut',           type=int,   default=512,    help='Embedding size in the last FC layer')
+parser.add_argument('--nOut',           type=int,   default=256,    help='Embedding size in the last FC layer')
 parser.add_argument('--sinc_stride',    type=int,   default=10,    help='Stride size of the first analytic filterbank layer of RawNet3')
 
 ## For test only

@@ -51,7 +51,7 @@ def download(args, lines):
         url     = line.split()[0]
         md5gt     = line.split()[1]
         outfile = url.split('/')[-1]
-
+        print(outfile)
         ## Download files
         out     = subprocess.call('wget %s --user %s --password %s -O %s/%s'%(url,args.user,args.password,args.save_path,outfile), shell=True)
         if out != 0:
